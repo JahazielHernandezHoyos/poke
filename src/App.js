@@ -1,18 +1,21 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Button, Modal } from 'reactstrap';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
-    const [result, setResult] = React.useState([]);
-    const [poke, setPoke] = React.useState([]);
-    const [load, setLoad] = React.useState("true");
-    const [show, setShow] = useState(false);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
-    const arr = [];
+  const [result, setResult] = React.useState([]);
+  const [poke, setPoke] = React.useState([]);
+  const [load, setLoad] = React.useState("true");
+
+  const pokemons = [];
+
+  function mostrarMasInformacion(poke) {
+    const contenidoExtra = document.querySelector("#informacionExtra")
+    poke.forEach(pokemon => {
+      console.log(pokemon)
+    })
+
+  }
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
@@ -22,16 +25,18 @@ const App = () => {
           data.results.map((item) => {
             fetch(item.url)
               .then((response) => response.json())
-              .then((allpokemon) => arr.push(allpokemon));
-            setPoke(arr);
+              .then((allpokemon) => pokemons.push(allpokemon));
+            setPoke(pokemons);
           })
         )
       );
   }, []);
 
+  mostrarMasInformacion(poke)
+
   setTimeout(() => {
     setLoad(false);
-    console.log(poke);
+    // console.log(poke);
   }, 1000);
 
   return (
@@ -40,28 +45,7 @@ const App = () => {
         <h1 className="text-center text-white">POKEDEX</h1>
       </header>
       <div className="container">
-        
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-
-        <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-          
           {load ? (
             <p>Cargando...</p>
           ) : (
@@ -79,7 +63,49 @@ const App = () => {
                         <p className="card-text">
                           tipo: {img.types[0].type.name}
                         </p>
-                        
+
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#masinfo"
+                        >
+                          Ver mas información de {img.name}
+                        </button>
+
+                        <div
+                          class="modal fade"
+                          id="masinfo"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog" id={img.id} key={img.id}>
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" >
+                                  {img.name}
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body" id="informacionExtra">...</div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cerrar
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         {/*
                         <h2>{img.name}</h2>
                          <p>
@@ -109,6 +135,6 @@ const App = () => {
       </div>
     </>
   );
-}
+};
 
 export default App;
