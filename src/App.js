@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal } from 'reactstrap';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
