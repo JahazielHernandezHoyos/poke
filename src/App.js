@@ -1,22 +1,21 @@
 import "bootstrap/dist/css/bootstrap.css";
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import React, { useEffect, useState} from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
-function App() {
-  const [result, setResult] = React.useState([]);
-  const [poke, setPoke] = React.useState([]);
-  const [load, setLoad] = React.useState("true");
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const arr = [];
+const App = () => {
+    const [result, setResult] = React.useState([]);
+    const [poke, setPoke] = React.useState([]);
+    const [load, setLoad] = React.useState("true");
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+    const arr = [];
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=15")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
       .then((response) => response.json())
       .then((data) =>
         setResult(
@@ -37,7 +36,11 @@ function App() {
 
   return (
     <>
+      <header className="bg-danger py-5">
+        <h1 className="text-center text-white">POKEDEX</h1>
+      </header>
       <div className="container">
+        
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
 
         <Button variant="primary" onClick={handleShow}>
