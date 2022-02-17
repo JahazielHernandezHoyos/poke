@@ -56,9 +56,6 @@ const InfoTabla = ({
                     <strong>Altura: </strong> {altura} Mts.
                 </li>
                 <li>
-                    <strong>Capturado: </strong> {capturar}.
-                </li>
-                <li>
                     <strong>HP: </strong> {hp}.
                 </li>
                 <li>
