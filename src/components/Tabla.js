@@ -47,7 +47,6 @@ const Galeria = () => {
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     {/* <th scope="col">Tipo</th> */}
-                    <th scope="col">Foto</th>
                   </tr>
                 </thead>
                 <tbody>
