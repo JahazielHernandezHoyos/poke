@@ -73,7 +73,12 @@ const Galeria = () => {
                     </div>
                   </div>
                 </div>
-                <Modal id={`id${info.id}`} titulo={info.name} habilidad={info.abilities[0].ability.name} estadisticas={info.stats[0].base_stat}/>
+                <Modal 
+                id={`id${info.id}`} 
+                titulo={info.name} 
+                habilidad={info.abilities[0].ability.name} 
+                estadisticas={info.stats[0].base_stat}
+                imagen={info.sprites.front_default}/>
               </div>
             ))
           )}

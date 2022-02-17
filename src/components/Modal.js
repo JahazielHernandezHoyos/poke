@@ -1,4 +1,4 @@
-const Modal = ({id, habilidad, titulo, estadisticas}) => {
+const Modal = ({id, imagen, habilidad, titulo, estadisticas}) => {
   return (
     <div
       className="modal fade"
@@ -21,12 +21,13 @@ const Modal = ({id, habilidad, titulo, estadisticas}) => {
             ></button>
           </div>
           <div className="modal-body">
-              <ul>
+            <img class="position-absolute top-0 start-50 translate-middle" src={imagen}></img>
+              <ul class="mt-5">      
                 <li>
-                    <h6>Estadistica Base: {estadisticas}</h6>   
+                    <strong>Estadistica Base:</strong>{estadisticas}   
                 </li>
                 <li>
-                    <h6>Habilidad: {habilidad}</h6>
+                    <strong>Habilidad: {habilidad}</strong>
                 </li>
               </ul>
 
