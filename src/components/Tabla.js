@@ -53,10 +53,17 @@ const Galeria = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td style={{textTransform: "capitalize"}} id={info.id} key={info.id}>
+                    <td style={{textTransform: "capitalize"}}>
                       {info.name}
                     </td>
-                    <th scope="row">{info.id}</th>
+
+                    <td scope="row">
+                      {info.weight/10}Kg.
+                    </td>
+
+                    <td scope="row">
+                      {info.height/10}Mts.
+                    </td>
                     
                     {/* <td>{info.types[0].type.name}</td> */}
                     <td>
@@ -77,7 +84,7 @@ const Galeria = () => {
                   </tr>
                 </tbody>
               </table>
-              <InfoTabla
+              <InfoTabla 
               id = {`id${info.id}`} 
               titulo = {info.name} 
               habilidad = {info.abilities[0].ability.name} 
@@ -93,7 +100,7 @@ const Galeria = () => {
               defensa_especial = {info.stats[4].base_stat}
               velocidad = {info.stats[5].base_stat}
               />
-            </div>
+              </div>
           ))
         )}
       </div>

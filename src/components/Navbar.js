@@ -4,9 +4,9 @@ const navbar = () => {
       <header className="bg-danger py-5">
         <h1 className="text-center text-white">POKEDEX</h1>
       </header>
-      <nav class="py-2 navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+      <nav class="py-2 navbar navbar-expand-lg navbar-dark bg-dark">
         <div
-          class="justify-content-center collapse navbar-collapse"
+          class="container-fluid justify-content-center collapse navbar-collapse"
           id="navbarNavDarkDropdown"
         >
           <ul class="navbar-nav">
