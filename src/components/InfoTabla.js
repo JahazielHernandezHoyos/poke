@@ -25,8 +25,8 @@ const InfoTabla = ({
         id={id}
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasScrollingLabel"style={{ textTransform: "capitalize" }}>
+        <div class="bg-danger offcanvas-header">
+          <h5 class="text-white mt-5 offcanvas-title" id="offcanvasScrollingLabel"style={{ textTransform: "capitalize" }}>
               {titulo}
           </h5>
           <button
@@ -36,32 +36,8 @@ const InfoTabla = ({
             aria-label="Close"
           ></button>
         </div>
-        <div class="offcanvas-body">
-        <img width="400" heigth="400" class="py-6 img-fluid position-absolute bottom-0 end-0" src={imagen}></img>
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
-        </div>
-      </div>
-      <div
-        class="offcanvas offcanvas-start"
-        tabindex="-1"
-        id="offcanvasWithBackdrop"
-        aria-labelledby="offcanvasWithBackdropLabel"
-      >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">
-            Offcanvas with backdrop
-          </h5>
-          <button
-            type="button"
-            class="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-        <ul class="py-5">
+        <div class="bg-white offcanvas-body">
+        <ul class="bg-white">
                 <li>
                     <strong>Tipo: </strong> {tipo}.
                 </li>      
@@ -99,6 +75,28 @@ const InfoTabla = ({
                     <strong>Velocidad: </strong> {velocidad}.
                 </li>
               </ul>
+              <img width="400" heigth="400" class="py-6 img-fluid position-absolute bottom-0 end-0" src={imagen}></img>
+        </div>
+      </div>
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        id="offcanvasWithBackdrop"
+        aria-labelledby="offcanvasWithBackdropLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">
+            Offcanvas with backdrop
+          </h5>
+          <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+        
 
         </div>
       </div>
