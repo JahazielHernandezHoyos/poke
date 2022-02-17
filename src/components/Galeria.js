@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useEffect } from "react";
-import {Spinner} from "reactstrap";
+import {Spinner, Modal} from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/loader.css";
 
