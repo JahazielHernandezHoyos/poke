@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useEffect } from "react";
-import {Spinner, Modal} from "reactstrap";
+import { Spinner } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/loader.css";
+import Modal from "./Modal";
 
 const Galeria = () => {
   const [setResult] = React.useState([]);
@@ -17,91 +18,62 @@ const Galeria = () => {
       .then((data) =>
         setResult(
           data.results.map((item) => {
-              fetch(item.url)
-                .then((response) => response.json())
-                .then((allpokemon) => pokemons.push(allpokemon));
-              setPoke(pokemons);
-            })
+            fetch(item.url)
+              .then((response) => response.json())
+              .then((allpokemon) => pokemons.push(allpokemon));
+            setPoke(pokemons);
+          })
         )
       );
   }, []);
 
   setTimeout(() => {
     setLoad(false);
-    // console.log(poke);
+    console.log(poke);
   }, 1000);
 
   return (
     <>
       <div className="container">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-          {load ?(
+          {load ? (
             <div class="mt-5 me-5 text-center">
-              <Spinner color="danger"/>
+              <Spinner color="danger" />
             </div>
           ) : (
-            poke.map((img, i) => (
+            poke.map((info) => (
               <div className="col-sm-3">
                 <div className="card" style={{ width: "18rem" }}>
-                  <div id={img.id} key={img.id}>
+                  <div id={info.id} key={info.id}>
                     <div className="card">
                       <img
-                        src={img.sprites.front_default}
+                        src={info.sprites.front_default}
                         className="card-img-top"
                       />
                       <div className="card-body">
-                        <h5 className="card-title" style={{textTransform: "capitalize"}}>{img.name}</h5>
+                        <h5
+                          className="card-title"
+                          style={{ textTransform: "capitalize" }}
+                        >
+                          {info.name}
+                        </h5>
                         <p className="card-text">
-                          Tipo: {img.types[0].type.name}
+                          Tipo: {info.types[0].type.name}
                         </p>
 
                         <button
                           type="button"
                           class="btn btn-outline-dark"
                           data-bs-toggle="modal"
-                          data-bs-target={("#", img.id)}
+                          data-bs-target={`#id${info.id}`}
                         >
                           Ver mas información
                         </button>
-
-                        <div
-                          class="modal fade"
-                          id="masinfo"
-                          tabindex="-1"
-                          aria-labelledby="exampleModalLabel"
-                          aria-hidden="true"
-                        >
-                          <div class="modal-dialog" id={img.id} key={img.id}>
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title">{img.name}</h5>
-                                <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
-                              </div>
-                              <div class="modal-body" id="informacionExtra">
-                                ...
-                              </div>
-                              <div class="modal-footer">
-                                <button
-                                  type="button"
-                                  class="btn btn-secondary"
-                                  data-bs-dismiss="modal"
-                                >
-                                  Cerrar
-                                </button>
-                              </div>
-                            </div>
-                          </div>
                         </div>
-
-                      </div>
                     </div>
                   </div>
                 </div>
+                <Modal id={`id${info.id}`} titulo={info.name} habilidad={info.abilities[0].ability.name} estadisticas={info.stats[0].base_stat}/>
               </div>
             ))
           )}
