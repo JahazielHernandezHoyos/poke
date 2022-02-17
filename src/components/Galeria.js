@@ -50,18 +50,18 @@ const Galeria = () => {
                         className="card-img-top"
                       />
                       <div className="card-body">
-                        <h5 className="card-title">{img.name}</h5>
+                        <h5 className="card-title" style={{textTransform: "capitalize"}}>{img.name}</h5>
                         <p className="card-text">
-                          tipo: {img.types[0].type.name}
+                          Tipo: {img.types[0].type.name}
                         </p>
 
                         <button
                           type="button"
-                          class="btn btn-outline-danger"
+                          class="btn btn-outline-dark"
                           data-bs-toggle="modal"
                           data-bs-target={("#", img.id)}
                         >
-                          Ver mas información de {img.name}
+                          Ver mas información
                         </button>
 
                         <div
