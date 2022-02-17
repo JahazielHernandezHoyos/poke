@@ -50,10 +50,6 @@ const Tabla = () => {
           </thead>
         </table>
       </div>
-          {load ? (
-            <h3 className="text-center">Cargando...</h3>
-          ) : (
-            poke.map((img, i) => (
           <table class="table">
             <tbody>
               <tr>
@@ -61,7 +57,6 @@ const Tabla = () => {
                 </tr>
             </tbody>
           </table>
-          )) )
     </>
   );
           };
