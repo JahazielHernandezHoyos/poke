@@ -1,19 +1,15 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import {Spinner} from "reactstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../assets/loader.css";
 
 const Galeria = () => {
-  const [result, setResult] = React.useState([]);
+  const [setResult] = React.useState([]);
   const [poke, setPoke] = React.useState([]);
   const [load, setLoad] = React.useState("true");
 
   const pokemons = [];
-
-  function mostrarMasInformacion(poke, id) {
-    const contenidoExtra = document.querySelector("#informacionExtra");
-    poke.forEach((pokemon) => {
-      console.log(pokemon[id]);
-    });
-  }
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
@@ -21,16 +17,14 @@ const Galeria = () => {
       .then((data) =>
         setResult(
           data.results.map((item) => {
-            fetch(item.url)
-              .then((response) => response.json())
-              .then((allpokemon) => pokemons.push(allpokemon));
-            setPoke(pokemons);
-          })
+              fetch(item.url)
+                .then((response) => response.json())
+                .then((allpokemon) => pokemons.push(allpokemon));
+              setPoke(pokemons);
+            })
         )
       );
   }, []);
-
-  mostrarMasInformacion(poke);
 
   setTimeout(() => {
     setLoad(false);
@@ -41,8 +35,10 @@ const Galeria = () => {
     <>
       <div className="container">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-          {load ? (
-            <h3 className="text-center">Cargando...</h3>
+          {load ?(
+            <div class="mt-5 me-5 text-center">
+              <Spinner color="danger"/>
+            </div>
           ) : (
             poke.map((img, i) => (
               <div className="col-sm-3">
@@ -61,10 +57,9 @@ const Galeria = () => {
 
                         <button
                           type="button"
-                          class="btn btn-primary"
+                          class="btn btn-outline-danger"
                           data-bs-toggle="modal"
                           data-bs-target={("#", img.id)}
-                          onClick={() => mostrarMasInformacion(poke, img.id)}
                         >
                           Ver mas información de {img.name}
                         </button>

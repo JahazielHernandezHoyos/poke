@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 const Tabla = () => {
-  const [result, setResult] = React.useState([]);
+  const [setResult] = React.useState([]);
   const [poke, setPoke] = React.useState([]);
   const [load, setLoad] = React.useState("true");
 
