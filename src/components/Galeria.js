@@ -67,7 +67,7 @@ const Galeria = () => {
                           data-bs-toggle="modal"
                           data-bs-target={`#id${info.id}`}
                         >
-                          Ver mas información
+                          Ver más información
                         </button>
                         </div>
                     </div>
