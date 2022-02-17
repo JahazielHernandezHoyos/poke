@@ -26,9 +26,9 @@ const InfoTabla = ({
         aria-labelledby="offcanvasScrollingLabel"
       >
         <div class="bg-danger offcanvas-header">
-          <h5 class="text-white mt-5 offcanvas-title" id="offcanvasScrollingLabel"style={{ textTransform: "capitalize" }}>
+          <h2 class="py-5 text-white mt-5 offcanvas-title" id="offcanvasScrollingLabel"style={{ textTransform: "capitalize" }}>
               {titulo}
-          </h5>
+          </h2>
           <button
             type="button"
             class="btn-close text-reset"
@@ -36,8 +36,10 @@ const InfoTabla = ({
             aria-label="Close"
           ></button>
         </div>
-        <div class="bg-white offcanvas-body">
-        <ul class="bg-white">
+        <div class="bg-dark offcanvas-body">
+        <img width="400" heigth="400" class="py-5 img-fluid position-absolute start-50 bottom-25 end-0" src={imagen}></img>
+        <ul class="py-5 text-white">
+        
                 <li>
                     <strong>Tipo: </strong> {tipo}.
                 </li>      
@@ -75,7 +77,6 @@ const InfoTabla = ({
                     <strong>Velocidad: </strong> {velocidad}.
                 </li>
               </ul>
-              <img width="400" heigth="400" class="py-6 img-fluid position-absolute bottom-0 end-0" src={imagen}></img>
         </div>
       </div>
       <div
