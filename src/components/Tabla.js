@@ -39,8 +39,7 @@ const Tabla = () => {
 
   return (
     <>
-      <div className="container">
-        <table class="table">
+        <table class="mt-5 table">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -49,11 +48,10 @@ const Tabla = () => {
             </tr>
           </thead>
         </table>
-      </div>
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">{poke[0].name}</th>
+                {/* <th scope="row">{poke[0].name}</th> */}
                 </tr>
             </tbody>
           </table>
