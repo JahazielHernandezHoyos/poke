@@ -78,7 +78,17 @@ const Galeria = () => {
                 titulo = {info.name} 
                 habilidad = {info.abilities[0].ability.name} 
                 estadisticas = {info.stats[0].base_stat}
-                imagen = {info.sprites.front_default}/>
+                imagen = {info.sprites.front_default}
+                peso = {info.weight/10}
+                altura = {info.height/10}
+                tipo = {info.types[0].type.name}
+                hp = {info.stats[0].base_stat}
+                ataque = {info.stats[1].base_stat}
+                defensa = {info.stats[2].base_stat}
+                ataque_especial = {info.stats[3].base_stat}
+                defensa_especial = {info.stats[4].base_stat}
+                velocidad = {info.stats[5].base_stat}
+                />
               </div>
             ))
           )}

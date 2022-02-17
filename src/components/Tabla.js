@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Spinner } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/loader.css";
+import InfoTabla from "./InfoTabla";
 
 const Galeria = () => {
   const [setResult] = React.useState([]);
@@ -39,39 +40,59 @@ const Galeria = () => {
             <Spinner color="danger" />
           </div>
         ) : (
-          poke.map((img, i) => (
+          poke.map((info) => (
             <div>
               <table className="mt-5 table">
                 <thead>
                   <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Tamaño</th>
                     {/* <th scope="col">Tipo</th> */}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">{img.id}</th>
-                    <td style={{textTransform: "capitalize"}} id={img.id} key={img.id}>
-                      {img.name}
+                    <td style={{textTransform: "capitalize"}} id={info.id} key={info.id}>
+                      {info.name}
                     </td>
-                    {/* <td>{img.types[0].type.name}</td> */}
+                    <th scope="row">{info.id}</th>
+                    
+                    {/* <td>{info.types[0].type.name}</td> */}
                     <td>
-                      <img
-                        src={img.sprites.front_default}
-                      />
+
                     </td>
                     <td>
+                      <InfoTabla/>
                       <button
-                        type="button"
                         class="btn btn-outline-dark"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target={`#id${info.id}`}
+                        aria-controls="offcanvasScrolling"
                       >
-                        Más información
+                        Ver más información
                       </button>
                     </td>
                   </tr>
                 </tbody>
               </table>
+              <InfoTabla
+              id = {`id${info.id}`} 
+              titulo = {info.name} 
+              habilidad = {info.abilities[0].ability.name} 
+              estadisticas = {info.stats[0].base_stat}
+              imagen = {info.sprites.front_default}
+              peso = {info.weight/10}
+              altura = {info.height/10}
+              tipo = {info.types[0].type.name}
+              hp = {info.stats[0].base_stat}
+              ataque = {info.stats[1].base_stat}
+              defensa = {info.stats[2].base_stat}
+              ataque_especial = {info.stats[3].base_stat}
+              defensa_especial = {info.stats[4].base_stat}
+              velocidad = {info.stats[5].base_stat}
+              />
             </div>
           ))
         )}

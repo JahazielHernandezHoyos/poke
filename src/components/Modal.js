@@ -1,4 +1,20 @@
-const Modal = ({id, imagen, habilidad, titulo, estadisticas}) => {
+const Modal = ({
+  id, 
+  imagen, 
+  habilidad, 
+  titulo, 
+  estadisticas, 
+  peso, 
+  altura, 
+  tipo, 
+  capturar, 
+  hp,
+  ataque,
+  defensa,
+  ataque_especial,
+  defensa_especial,
+  velocidad,
+}) => {
   return (
     <div
       className="modal fade"
@@ -21,13 +37,43 @@ const Modal = ({id, imagen, habilidad, titulo, estadisticas}) => {
             ></button>
           </div>
           <div className="modal-body">
-            <img class="position-absolute top-0 start-50 translate-middle" src={imagen}></img>
-              <ul class="mt-5">      
+            <img width="400" heigth="400" class="img-fluid position-absolute top-50 start-100 translate-middle" src={imagen}></img>
+              <ul class="py-5">
                 <li>
-                    <strong>Estadistica Base:</strong>{estadisticas}   
+                    <strong>Tipo: </strong> {tipo}.
+                </li>      
+                <li>
+                    <strong>Estadistica Base: </strong> {estadisticas}.  
                 </li>
                 <li>
-                    <strong>Habilidad: {habilidad}</strong>
+                    <strong>Habilidad: </strong> {habilidad}.
+                </li>
+                <li>
+                    <strong>Peso: </strong> {peso} Kg.
+                </li>
+                <li>
+                    <strong>Altura: </strong> {altura} Mts.
+                </li>
+                <li>
+                    <strong>Capturado: </strong> {capturar}.
+                </li>
+                <li>
+                    <strong>HP: </strong> {hp}.
+                </li>
+                <li>
+                    <strong>Ataque: </strong> {ataque}.
+                </li>
+                <li>
+                    <strong>Defensa: </strong> {defensa}.
+                </li>
+                <li>
+                    <strong>Ataque Especial: </strong> {ataque_especial}.
+                </li>
+                <li>
+                    <strong>Defensa Especial: </strong> {defensa_especial}.
+                </li>
+                <li>
+                    <strong>Velocidad: </strong> {velocidad}.
                 </li>
               </ul>
 
