@@ -20,7 +20,7 @@ const Galeria = () => {
   const pokemons = [];
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
       .then((response) => response.json())
       .then((data) =>
         setResult(
@@ -50,8 +50,6 @@ const Galeria = () => {
           ) : (
 
             poke
-            .slice((pagina -1) * totalPorPagina, 
-            (pagina -1) * totalPorPagina + totalPorPagina)
             .map((info) => (
               <div className="col-sm-3">
                 <div className="card" style={{ width: "18rem" }}>
