@@ -1,6 +1,7 @@
 //componentes
 import Tabla from "../components/Tabla";
 import Navbar from "../components/Navbar";
+import FooterPaginacion from "../components/FooterPaginacion";
 
 const PaginaTabla = () => {
     return ( 
@@ -9,6 +10,7 @@ const PaginaTabla = () => {
         <div className="container">
             <Tabla />
         </div>
+        <FooterPaginacion/>
       </>
      );
 }

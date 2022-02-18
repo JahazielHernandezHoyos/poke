@@ -25,10 +25,10 @@ const Modal = ({
     >
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel" style={{ textTransform: "capitalize" }}>
+          <div className="modal-header bg-danger text-white">
+            <h3 className="modal-title" id="exampleModalLabel" style={{ textTransform: "capitalize" }}>
               {titulo}
-            </h5>
+            </h3>
             <button
               type="button"
               className="btn-close"

@@ -3,17 +3,24 @@ import React, { useEffect } from "react";
 import { Spinner } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/loader.css";
+
+//componentes
 import Modal from "./Modal";
+import FooterPaginacion from "./FooterPaginacion";
 
 const Galeria = () => {
   const [setResult] = React.useState([]);
   const [poke, setPoke] = React.useState([]);
   const [load, setLoad] = React.useState("true");
+  const [pagina, setPagina] = React.useState(1);
+  const [totalPorPagina, setTotalPorPagina] = React.useState(20);
+
+  const maximo = poke.length / totalPorPagina;
 
   const pokemons = [];
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150")
       .then((response) => response.json())
       .then((data) =>
         setResult(
@@ -29,7 +36,7 @@ const Galeria = () => {
 
   setTimeout(() => {
     setLoad(false);
-    console.log(poke);
+    // console.log(poke);
   }, 1000);
 
   return (
@@ -41,7 +48,11 @@ const Galeria = () => {
               <Spinner color="danger" />
             </div>
           ) : (
-            poke.map((info) => (
+
+            poke
+            .slice((pagina -1) * totalPorPagina, 
+            (pagina -1) * totalPorPagina + totalPorPagina)
+            .map((info) => (
               <div className="col-sm-3">
                 <div className="card" style={{ width: "18rem" }}>
                   <div id={info.id} key={info.id}>
@@ -59,6 +70,9 @@ const Galeria = () => {
                         </h5>
                         <p className="card-text">
                           Tipo: {info.types[0].type.name}
+                        </p>
+                        <p className="card-text">
+                        Id: {info.id}
                         </p>
 
                         <button
@@ -94,6 +108,7 @@ const Galeria = () => {
           )}
         </div>
       </div>
+      <FooterPaginacion pagina={pagina} setPagina={setPagina} maximo={maximo}/>
     </>
   );
 };

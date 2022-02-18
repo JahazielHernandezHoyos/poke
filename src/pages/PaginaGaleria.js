@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 
 //componentes
 import Galeria from "../components/Galeria";
-import Tabla from "../components/Tabla";
 import Navbar from "../components/Navbar";
+import FooterPaginacion from "../components/FooterPaginacion";
 
 const PaginaGaleria = () => {
 
@@ -14,6 +14,7 @@ const PaginaGaleria = () => {
       <div className="container">
           <Galeria />
       </div>
+      <FooterPaginacion/>
     </>
   );
 };

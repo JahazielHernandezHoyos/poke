@@ -53,24 +53,16 @@ const Galeria = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td style={{textTransform: "capitalize"}}>
-                      {info.name}
-                    </td>
+                    <td style={{ textTransform: "capitalize" }}>{info.name}</td>
 
-                    <td scope="row">
-                      {info.weight/10}Kg.
-                    </td>
+                    <td scope="row">{info.weight / 10}Kg.</td>
 
-                    <td scope="row">
-                      {info.height/10}Mts.
-                    </td>
-                    
+                    <td scope="row">{info.height / 10}Mts.</td>
+
                     {/* <td>{info.types[0].type.name}</td> */}
+                    <td></td>
                     <td>
-
-                    </td>
-                    <td>
-                      <InfoTabla/>
+                      <InfoTabla />
                       <button
                         class="btn btn-outline-dark"
                         type="button"
@@ -84,23 +76,23 @@ const Galeria = () => {
                   </tr>
                 </tbody>
               </table>
-              <InfoTabla 
-              id = {`id${info.id}`} 
-              titulo = {info.name} 
-              habilidad = {info.abilities[0].ability.name} 
-              estadisticas = {info.stats[0].base_stat}
-              imagen = {info.sprites.front_default}
-              peso = {info.weight/10}
-              altura = {info.height/10}
-              tipo = {info.types[0].type.name}
-              hp = {info.stats[0].base_stat}
-              ataque = {info.stats[1].base_stat}
-              defensa = {info.stats[2].base_stat}
-              ataque_especial = {info.stats[3].base_stat}
-              defensa_especial = {info.stats[4].base_stat}
-              velocidad = {info.stats[5].base_stat}
+              <InfoTabla
+                id={`id${info.id}`}
+                titulo={info.name}
+                habilidad={info.abilities[0].ability.name}
+                estadisticas={info.stats[0].base_stat}
+                imagen={info.sprites.front_default}
+                peso={info.weight / 10}
+                altura={info.height / 10}
+                tipo={info.types[0].type.name}
+                hp={info.stats[0].base_stat}
+                ataque={info.stats[1].base_stat}
+                defensa={info.stats[2].base_stat}
+                ataque_especial={info.stats[3].base_stat}
+                defensa_especial={info.stats[4].base_stat}
+                velocidad={info.stats[5].base_stat}
               />
-              </div>
+            </div>
           ))
         )}
       </div>
