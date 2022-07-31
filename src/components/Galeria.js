@@ -7,54 +7,31 @@ import "../assets/loader.css";
 
 //componentes
 import Modal from "./Modal";
-import FooterPaginacion from "./FooterPaginacion";
 
 const Galeria = () => {
   const [setResult] = React.useState([]);
   const [poke, setPoke] = React.useState([]);
   const [load, setLoad] = React.useState("true");
-  const [pagina, setPagina] = React.useState(1);
-  const [totalPorPagina, setTotalPorPagina] = React.useState(20);
-
-  const maximo = poke.length / totalPorPagina;
 
   const pokemons = [];
 
-
-    // fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
-    //   .then((response) => await response.json())
-    //   .then((data) =>
-    //     setResult(
-    //       data.results.map((item) => {
-    //         fetch(item.url)
-    //           .then((response) => response.json())
-    //           .then((allpokemon) => pokemons.push(allpokemon));
-    //         setPoke(pokemons);
-    //       })
-    //     )
-    //   );
-
-    //incluir el async await
-    async function fetchData() {
-      const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?limit=300"
-      );
-      const data = await response.json();
-      setResult(
-        data.results.map((item) => {
-          fetch(item.url)
-            .then((response) => response.json())
-            .then((allpokemon) => pokemons.push(allpokemon));
-          setPoke(pokemons);
-        }
-        )
-      );
-    }
-    useEffect(() => {
-      fetchData();
-    }
-    , []);
-
+  async function fetchData() {
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/pokemon/?limit=150"
+    );
+    const data = await response.json();
+    setResult(
+      await data.results.map((item) => {
+        fetch(item.url)
+          .then((response) => response.json())
+          .then((allpokemon) => pokemons.push(allpokemon));
+        setPoke(pokemons);
+      })
+    );
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   setTimeout(() => {
     setLoad(false);
@@ -66,8 +43,12 @@ const Galeria = () => {
       <div className="container">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
           {load ? (
-            <div class="mt-5 me-5 text-center">
-              <Spinner color="danger" />
+            <div className="container" style={{ paddingLeft: "120px" }}>
+              <Spinner
+                style={{ width: "5rem", height: "5rem", container: "center" }}
+                type="grow"
+                color="danger"
+              />
             </div>
           ) : (
             poke.map((info) => (
@@ -125,7 +106,6 @@ const Galeria = () => {
           )}
         </div>
       </div>
-      <FooterPaginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
     </>
   );
 };

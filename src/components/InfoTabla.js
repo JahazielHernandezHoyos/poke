@@ -37,7 +37,7 @@ const InfoTabla = ({
           ></button>
         </div>
         <div class="bg-dark offcanvas-body">
-        <img width="400" heigth="400" class="py-5 img-fluid position-absolute start-50 bottom-25 end-0" src={imagen}></img>
+        <img width="400" heigth="400" class="py-5 img-fluid position-absolute start-50 bottom-25 end-0" src={imagen} alt="pokedex"></img>
         <ul class="py-5 text-white">
         
                 <li>
