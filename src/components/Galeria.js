@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import "bootstrap/dist/css/bootstrap.css";
 import React, { useEffect } from "react";
 import { Spinner } from "reactstrap";
@@ -19,20 +20,41 @@ const Galeria = () => {
 
   const pokemons = [];
 
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
-      .then((response) => response.json())
-      .then((data) =>
-        setResult(
-          data.results.map((item) => {
-            fetch(item.url)
-              .then((response) => response.json())
-              .then((allpokemon) => pokemons.push(allpokemon));
-            setPoke(pokemons);
-          })
+
+    // fetch("https://pokeapi.co/api/v2/pokemon/?limit=150")
+    //   .then((response) => await response.json())
+    //   .then((data) =>
+    //     setResult(
+    //       data.results.map((item) => {
+    //         fetch(item.url)
+    //           .then((response) => response.json())
+    //           .then((allpokemon) => pokemons.push(allpokemon));
+    //         setPoke(pokemons);
+    //       })
+    //     )
+    //   );
+
+    //incluir el async await
+    async function fetchData() {
+      const response = await fetch(
+        "https://pokeapi.co/api/v2/pokemon/?limit=150"
+      );
+      const data = await response.json();
+      setResult(
+        data.results.map((item) => {
+          fetch(item.url)
+            .then((response) => response.json())
+            .then((allpokemon) => pokemons.push(allpokemon));
+          setPoke(pokemons);
+        }
         )
       );
-  }, []);
+    }
+    useEffect(() => {
+      fetchData();
+    }
+    , []);
+
 
   setTimeout(() => {
     setLoad(false);
@@ -48,9 +70,7 @@ const Galeria = () => {
               <Spinner color="danger" />
             </div>
           ) : (
-
-            poke
-            .map((info) => (
+            poke.map((info) => (
               <div className="col-sm-3">
                 <div className="card" style={{ width: "18rem" }}>
                   <div id={info.id} key={info.id}>
@@ -58,6 +78,7 @@ const Galeria = () => {
                       <img
                         src={info.sprites.front_default}
                         className="card-img-top"
+                        alt="pokemon"
                       />
                       <div className="card-body">
                         <h5
@@ -69,9 +90,7 @@ const Galeria = () => {
                         <p className="card-text">
                           Tipo: {info.types[0].type.name}
                         </p>
-                        <p className="card-text">
-                        Id: {info.id}
-                        </p>
+                        <p className="card-text">Id: {info.id}</p>
 
                         <button
                           type="button"
@@ -81,32 +100,32 @@ const Galeria = () => {
                         >
                           Ver más información
                         </button>
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <Modal 
-                id = {`id${info.id}`} 
-                titulo = {info.name} 
-                habilidad = {info.abilities[0].ability.name} 
-                estadisticas = {info.stats[0].base_stat}
-                imagen = {info.sprites.front_default}
-                peso = {info.weight/10}
-                altura = {info.height/10}
-                tipo = {info.types[0].type.name}
-                hp = {info.stats[0].base_stat}
-                ataque = {info.stats[1].base_stat}
-                defensa = {info.stats[2].base_stat}
-                ataque_especial = {info.stats[3].base_stat}
-                defensa_especial = {info.stats[4].base_stat}
-                velocidad = {info.stats[5].base_stat}
+                <Modal
+                  id={`id${info.id}`}
+                  titulo={info.name}
+                  habilidad={info.abilities[0].ability.name}
+                  estadisticas={info.stats[0].base_stat}
+                  imagen={info.sprites.front_default}
+                  peso={info.weight / 10}
+                  altura={info.height / 10}
+                  tipo={info.types[0].type.name}
+                  hp={info.stats[0].base_stat}
+                  ataque={info.stats[1].base_stat}
+                  defensa={info.stats[2].base_stat}
+                  ataque_especial={info.stats[3].base_stat}
+                  defensa_especial={info.stats[4].base_stat}
+                  velocidad={info.stats[5].base_stat}
                 />
               </div>
             ))
           )}
         </div>
       </div>
-      <FooterPaginacion pagina={pagina} setPagina={setPagina} maximo={maximo}/>
+      <FooterPaginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
     </>
   );
 };
