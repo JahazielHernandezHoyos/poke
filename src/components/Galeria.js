@@ -37,7 +37,7 @@ const Galeria = () => {
     //incluir el async await
     async function fetchData() {
       const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon/?limit=150"
+        "https://pokeapi.co/api/v2/pokemon/?limit=300"
       );
       const data = await response.json();
       setResult(
